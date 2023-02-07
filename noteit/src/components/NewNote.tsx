@@ -1,11 +1,28 @@
-import React from 'react'
-import NoteForm from './NoteForm'
+import React, { FC } from "react";
+import { NotesData, Tag } from "../App";
+import NoteForm from "./NoteForm";
 
-export const NewNote =()=> {
+export type NewNotesProps = {
+  onSubmit: (data: NotesData) => void;
+  onAddTag: (tag: Tag) => void;
+  availableTags: Tag[];
+};
+
+export const NewNote: FC<NewNotesProps> = ({
+  onSubmit,
+  onAddTag,
+  availableTags,
+}) => {
   return (
     <div>
-        {<NoteForm/>}
+      <h3 className="text-center my-3">New Note</h3>
+      {
+        <NoteForm
+          onSubmit={onSubmit}
+          onAddTag={onAddTag}
+          availableTags={availableTags}
+        />
+      }
     </div>
-  )
-}
-
+  );
+};
