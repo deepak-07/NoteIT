@@ -4,6 +4,7 @@ import CreatableReactSelect from "react-select/creatable";
 import { Tag } from "../App";
 import { NewNotesProps } from "./NewNote";
 import { v4 as uuidV4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const NoteForm: FC<NewNotesProps> = ({
   onSubmit,
@@ -13,6 +14,7 @@ const NoteForm: FC<NewNotesProps> = ({
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const navigate = useNavigate();
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ const NoteForm: FC<NewNotesProps> = ({
       body: bodyRef?.current!.value,
       tags: selectedTags,
     });
+    navigate("..");
   };
   return (
     <Form>
