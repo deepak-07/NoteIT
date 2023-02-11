@@ -7,6 +7,8 @@ import { NewNote } from "./components/NewNote";
 import { useLocalStorageHook } from "./components/hooks/useLocalStorageHook";
 import { v4 as uuidV4 } from "uuid";
 import { NoteList } from "./components/NoteList";
+import NotesLayout from "./components/NotesLayout";
+import { IndividualNote } from "./components/IndividualNote";
 
 export type RawNote = {
   id: string;
@@ -73,9 +75,9 @@ function App() {
             />
           }
         />
-        <Route path="/:id">
-          <Route index element={<h1>Show</h1>} />
-          {/*  <Route path="/edit" element={<h1>Edit</h1>} /> */}
+        <Route path="/:id" element={<NotesLayout notesData={notesWithTags} />}>
+          <Route index element={<IndividualNote />} />
+          {/* <Route path="/edit" element={<h1>Edit</h1>} /> */}
         </Route>
       </Routes>
     </Container>

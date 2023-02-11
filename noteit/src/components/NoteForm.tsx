@@ -1,19 +1,28 @@
 import React, { FC, FormEvent, useRef, useState } from "react";
 import { Form, Stack, Row, Col, Button } from "react-bootstrap";
 import CreatableReactSelect from "react-select/creatable";
-import { Tag } from "../App";
-import { NewNotesProps } from "./NewNote";
+import { NotesData, Tag } from "../App";
+
 import { v4 as uuidV4 } from "uuid";
 import { useNavigate } from "react-router-dom";
 
-const NoteForm: FC<NewNotesProps> = ({
+type NoteFormProps = {
+  onSubmit: (data: NotesData) => void;
+  onAddTag: (tag: Tag) => void;
+  availableTags: Tag[];
+} & Partial<NotesData>;
+
+const NoteForm: FC<NoteFormProps> = ({
   onSubmit,
   onAddTag,
   availableTags,
-}: NewNotesProps) => {
+  title = "",
+  body = "",
+  tags = [],
+}: NoteFormProps) => {
   const titleRef = useRef<HTMLInputElement>(null);
   const bodyRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>(tags);
   const navigate = useNavigate();
 
   const submitHandler = (e: FormEvent) => {
@@ -32,7 +41,7 @@ const NoteForm: FC<NewNotesProps> = ({
           <Col>
             <Form.Group controlId="title">
               <Form.Label>Title</Form.Label>
-              <Form.Control required ref={titleRef} />
+              <Form.Control required ref={titleRef} defaultValue={title} />
             </Form.Group>
           </Col>
           <Col>
@@ -64,7 +73,13 @@ const NoteForm: FC<NewNotesProps> = ({
         </Row>
         <Form.Group controlId="body">
           <Form.Label>Body</Form.Label>
-          <Form.Control required as="textarea" rows={15} ref={bodyRef} />
+          <Form.Control
+            required
+            as="textarea"
+            rows={15}
+            ref={bodyRef}
+            defaultValue={body}
+          />
         </Form.Group>
         <Stack direction="horizontal" gap={2} className="justify-content-end">
           <Button type="submit" variant="primary" onClick={submitHandler}>

@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useRef, useState } from "react";
+import React, { FC, FormEvent, useMemo, useRef, useState } from "react";
 import { Form, Stack, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
@@ -10,9 +10,26 @@ export type NotesListProps = {
   availableTags: Tag[];
 };
 export const NoteList: FC<NotesListProps> = ({ notesData, availableTags }) => {
-  console.log("notes list data is ", notesData);
+  console.log("notes list data is ", availableTags);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [title, setTitle] = useState<string>("");
+  console.log(
+    "%cNoteList.tsx line:16 selectedTags",
+    "color: #007acc;",
+    selectedTags
+  );
+  const filteredNotes = useMemo(() => {
+    return notesData.filter((note) => {
+      return (
+        (title === "" ||
+          note.title.toLowerCase().includes(title.toLowerCase())) &&
+        (selectedTags.length === 0 ||
+          selectedTags.every((tag) => {
+            note.tags.some((noteTag) => noteTag.id == tag.id);
+          }))
+      );
+    });
+  }, [title, selectedTags, notesData]);
   return (
     <>
       <Row className="align-items-center mb-4">
@@ -69,13 +86,13 @@ export const NoteList: FC<NotesListProps> = ({ notesData, availableTags }) => {
         </Row>
       </Form>
       <Row xs={1} sm={2} lg={3} xl={4} className="g-3">
-        <Stack gap={4}>
-          {notesData?.map((note) => {
+        <Col>
+          {filteredNotes?.map((note) => {
             return (
               <NoteCard title={note?.title} tags={note?.tags} id={note.id} />
             );
           })}
-        </Stack>
+        </Col>
       </Row>
     </>
   );
