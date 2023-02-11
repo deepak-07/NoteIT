@@ -4,7 +4,11 @@ import ReactMarkdown from "react-markdown";
 import { Link } from "react-router-dom";
 import { useNote } from "./NotesLayout";
 
-export const IndividualNote = () => {
+type IndividualNoteProps = {
+  onDelete: (id: string) => void;
+};
+
+export const IndividualNote = ({ onDelete }: IndividualNoteProps) => {
   const note = useNote();
   return (
     <>
@@ -34,13 +38,10 @@ export const IndividualNote = () => {
         </Col>
         <Col xs="auto">
           <Stack gap={2} direction="horizontal">
-            <Link to={`${note.id}/edit`}>
+            <Link to={`/${note.id}/edit`}>
               <Button variant="primary">Edit</Button>
             </Link>
-            <Button
-              // onClick={() => setEditTagsModalIsOpen(true)}
-              variant="outline-secondary"
-            >
+            <Button onClick={() => onDelete(note.id)} variant="outline-danger">
               Delete
             </Button>
             <Link to={`/`}>

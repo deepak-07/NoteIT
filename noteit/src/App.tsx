@@ -9,6 +9,7 @@ import { v4 as uuidV4 } from "uuid";
 import { NoteList } from "./components/NoteList";
 import NotesLayout from "./components/NotesLayout";
 import { IndividualNote } from "./components/IndividualNote";
+import { EditNote } from "./components/EditNote";
 
 export type RawNote = {
   id: string;
@@ -55,6 +56,26 @@ function App() {
       ];
     });
   };
+  const onUpdateNote = (id: string, { tags, ...data }: NotesData) => {
+    setNotesData((prevNotes: NotesData[]) => {
+      return prevNotes.map((note: NotesData) => {
+        if (note.id == id) {
+          return {
+            ...note,
+            ...data,
+            tagIds: tags.map((tag) => tag.id),
+          };
+        } else {
+          return note;
+        }
+      });
+    });
+  };
+  const onDeleteNOte = (id: string) => {
+    setNotesData((prevNotes: NotesData[]) => {
+      return prevNotes.filter((note: NotesData) => id !== note.id);
+    });
+  };
   const addTag = (tag: Tag) => {
     setTags((prev: Tag[]) => [...prev, tag]);
   };
@@ -76,8 +97,17 @@ function App() {
           }
         />
         <Route path="/:id" element={<NotesLayout notesData={notesWithTags} />}>
-          <Route index element={<IndividualNote />} />
-          {/* <Route path="/edit" element={<h1>Edit</h1>} /> */}
+          <Route index element={<IndividualNote  onDelete={onDeleteNOte}/>} />
+          <Route
+            path="edit"
+            element={
+              <EditNote
+                onSubmit={onUpdateNote}
+                onAddTag={addTag}
+                availableTags={tags}
+              />
+            }
+          />
         </Route>
       </Routes>
     </Container>
