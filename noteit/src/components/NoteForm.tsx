@@ -18,12 +18,6 @@ const NoteForm: FC<NewNotesProps> = ({
 
   const submitHandler = (e: FormEvent) => {
     e.preventDefault();
-    console.log(
-      "data here is ",
-      titleRef?.current?.value,
-      bodyRef?.current?.value,
-      selectedTags
-    );
     onSubmit({
       title: titleRef?.current!.value,
       body: bodyRef?.current!.value,

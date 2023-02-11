@@ -6,6 +6,7 @@ import { Container } from "react-bootstrap";
 import { NewNote } from "./components/NewNote";
 import { useLocalStorageHook } from "./components/hooks/useLocalStorageHook";
 import { v4 as uuidV4 } from "uuid";
+import { NoteList } from "./components/NoteList";
 
 export type RawNote = {
   id: string;
@@ -58,7 +59,10 @@ function App() {
   return (
     <Container>
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route
+          path="/"
+          element={<NoteList notesData={notesWithTags} availableTags={tags} />}
+        />
         <Route
           path="/new"
           element={
@@ -70,8 +74,8 @@ function App() {
           }
         />
         <Route path="/:id">
-          {/* <Route index element={<h1>Show</h1>} />
-        <Route path="/edit" element={<h1>Edit</h1>} /> */}
+          <Route index element={<h1>Show</h1>} />
+          {/*  <Route path="/edit" element={<h1>Edit</h1>} /> */}
         </Route>
       </Routes>
     </Container>

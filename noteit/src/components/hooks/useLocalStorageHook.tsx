@@ -15,7 +15,6 @@ export function useLocalStorageHook<T>(
   });
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value));
-    console.log("ls now ", key, value);
   }, [value, key]);
 
   return [value, setValue] as [T, typeof setValue];
