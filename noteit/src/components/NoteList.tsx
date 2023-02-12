@@ -107,9 +107,11 @@ export const NoteList: FC<NotesListProps> = ({
       </Form>
       <Row xs={1} sm={2} lg={3} xl={4} className="">
         {notesData.length == 0 ? (
-          <div className="text-center font-weight-bold">
-            Create your 1st draft
-          </div>
+          <Row className="w-100">
+            <div className="text-center my-3 font-weight-bold">
+              Create your 1st draft
+            </div>
+          </Row>
         ) : filteredNotes?.length > 0 ? (
           filteredNotes?.map((note) => {
             return (
@@ -119,9 +121,11 @@ export const NoteList: FC<NotesListProps> = ({
             );
           })
         ) : (
-          <div className="text-center font-weight-bold">
-            Ahh.. Nothing to show
-          </div>
+          <Row className="w-100">
+            <div className="text-center my-3 font-weight-bold">
+              Ahh.. Nothing to show
+            </div>
+          </Row>
         )}
       </Row>
 
@@ -161,30 +165,34 @@ export const EditModalTags = ({
         </Modal.Header>
         <Modal.Body>
           <Stack gap={2}>
-            {availableTags.map((tag) => {
-              return (
-                <Row key={tag.id}>
-                  <Col>
-                    <Form.Control
-                      type="text"
-                      value={tag.label}
-                      onChange={(e) => {
-                        updateTag(tag.id, e.target.value);
-                      }}
-                    />
-                  </Col>
-                  <Col xs="auto">
-                    <Button
-                      type="button"
-                      variant="outline-danger"
-                      onClick={() => deleteTag(tag.id)}
-                    >
-                      &times;
-                    </Button>
-                  </Col>
-                </Row>
-              );
-            })}
+            {availableTags.length > 0 ? (
+              availableTags.map((tag) => {
+                return (
+                  <Row key={tag.id}>
+                    <Col>
+                      <Form.Control
+                        type="text"
+                        value={tag.label}
+                        onChange={(e) => {
+                          updateTag(tag.id, e.target.value);
+                        }}
+                      />
+                    </Col>
+                    <Col xs="auto">
+                      <Button
+                        type="button"
+                        variant="outline-danger"
+                        onClick={() => deleteTag(tag.id)}
+                      >
+                        &times;
+                      </Button>
+                    </Col>
+                  </Row>
+                );
+              })
+            ) : (
+              <p>No tags avaialble</p>
+            )}
           </Stack>
           <Stack>
             <Row></Row>
