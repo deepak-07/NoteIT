@@ -59,14 +59,14 @@ const NoteForm: FC<NoteFormProps> = ({
                 isMulti
                 className="note-fields"
                 classNames={{
-                  control: (state) => "note-fields",
+                  control: () => "note-fields-tag",
                 }}
                 theme={(theme) => ({
                   ...theme,
                   borderRadius: 5,
                   colors: {
                     ...theme.colors,
-                    primary25: "#3C2A21",
+                    primary25: "#674188",
                   },
                 })}
                 // styles={option:() => ({
@@ -108,12 +108,12 @@ const NoteForm: FC<NoteFormProps> = ({
           />
         </Form.Group>
         <Stack direction="horizontal" gap={2} className="justify-content-end">
-          <Button type="submit" variant="primary">
+          <Button type="submit" variant="btn btn-dark">
             Save
           </Button>
           <Button
             type="button"
-            variant="secondary"
+            variant="btn btn-light"
             onClick={() => navigate("/")}
           >
             Cancel

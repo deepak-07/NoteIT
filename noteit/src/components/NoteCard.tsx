@@ -30,7 +30,7 @@ export const NoteCard: FC<NotesCardProps> = ({ title, tags, id }) => {
             >
               {tags.map((tag) => {
                 return (
-                  <Badge key={tag.id} className={"text-truncate"}>
+                  <Badge key={tag.id} className={"text-truncate "} bg="dark">
                     {tag.label}
                   </Badge>
                 );

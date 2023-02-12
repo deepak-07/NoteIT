@@ -2,25 +2,30 @@
     width: 300px;
     padding: 20px;
     margin: 0 auto;
-    background-color: #D5CEA3;
-    color: #3C2A21 !important;
+    background-color: #674188;
+    color: #F7EFE5 !important;
 }
 
 .note-card:hover,
 .note-card:focus {
     overflow: hidden;
-    background: #3C2A21 !important;
-    color: #E5E5CB !important;
+    background: #a35edf !important;
+    color: #F7EFE5 !important;
     box-sizing: border-box;
     box-shadow: 0 10px 10px #3C2A21
 }
 
 .note-fields {
-    background-color: #3C2A21 !important;
-    color: #D5CEA3 !important;
+    background-color: #FFFBF5 !important;
+    color: black !important;
+    font-weight: 600;
+}
+
+.note-fields-tag {
+    background-color: #FFFBF5 !important;
     font-weight: 600;
 }
 
 .note-fields:focus {
-    border: 2px solid white !important;
+    /* border: 2px solid white !important; */
 }

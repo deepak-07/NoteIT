@@ -44,11 +44,11 @@ export const NoteList: FC<NotesListProps> = ({
         <Col xs="auto">
           <Stack gap={2} direction="horizontal">
             <Link to="/new">
-              <Button variant="primary">Create</Button>
+              <Button variant="btn btn-dark">Create</Button>
             </Link>
             <Button
               onClick={() => setEditTagsModalIsOpen(true)}
-              variant="secondary"
+              variant="btn btn-light"
             >
               Edit Tags
             </Button>
@@ -82,7 +82,7 @@ export const NoteList: FC<NotesListProps> = ({
                   borderRadius: 5,
                   colors: {
                     ...theme.colors,
-                    primary25: "#3C2A21",
+                    primary25: "#674188",
                   },
                 })}
                 placeholder={"Filter tags"}

@@ -27,9 +27,11 @@ export const IndividualNote = ({ onDelete }: IndividualNoteProps) => {
               >
                 {note.tags.map((tag) => {
                   return (
-                    <Badge key={tag.id} className={"text-truncate"}>
-                      {tag.label}
-                    </Badge>
+                    <h6>
+                      <Badge key={tag.id} className={"text-truncate"} bg="dark">
+                        {tag.label}
+                      </Badge>
+                    </h6>
                   );
                 })}
               </Stack>
