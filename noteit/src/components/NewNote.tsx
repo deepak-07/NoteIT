@@ -15,7 +15,7 @@ export const NewNote: FC<NewNotesProps> = ({
 }) => {
   return (
     <div>
-      <h3 className="text-center my-3">New Note</h3>
+      <h3 className="text-center my-3">New Draft</h3>
       {
         <NoteForm
           onSubmit={onSubmit}

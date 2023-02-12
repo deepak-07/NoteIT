@@ -17,7 +17,7 @@ export const EditNote: FC<EditNotesProps> = ({
   const note = useNote();
   return (
     <div>
-      <h3 className="text-center my-3">Edit Note</h3>
+      <h3 className="text-center my-3">Edit Draft</h3>
       {
         <NoteForm
           onSubmit={(data) => onSubmit(note.id, data)}

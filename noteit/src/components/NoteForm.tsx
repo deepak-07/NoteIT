@@ -1,7 +1,9 @@
 import React, { FC, FormEvent, useRef, useState } from "react";
 import { Form, Stack, Row, Col, Button } from "react-bootstrap";
 import CreatableReactSelect from "react-select/creatable";
+import { StylesConfig } from "react-select";
 import { NotesData, Tag } from "../App";
+import "../Note.css";
 
 import { v4 as uuidV4 } from "uuid";
 import { useNavigate } from "react-router-dom";
@@ -35,13 +37,19 @@ const NoteForm: FC<NoteFormProps> = ({
     navigate("..");
   };
   return (
-    <Form>
+    <Form onSubmit={submitHandler}>
       <Stack gap={4}>
         <Row>
           <Col>
             <Form.Group controlId="title">
               <Form.Label>Title</Form.Label>
-              <Form.Control required ref={titleRef} defaultValue={title} />
+              <Form.Control
+                required
+                ref={titleRef}
+                defaultValue={title}
+                className="note-fields"
+                placeholder="Title..."
+              />
             </Form.Group>
           </Col>
           <Col>
@@ -49,6 +57,23 @@ const NoteForm: FC<NoteFormProps> = ({
               <Form.Label>Tags</Form.Label>
               <CreatableReactSelect
                 isMulti
+                className="note-fields"
+                classNames={{
+                  control: () => "note-fields-tag",
+                }}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 5,
+                  colors: {
+                    ...theme.colors,
+                    primary25: "#674188",
+                  },
+                })}
+                // styles={option:() => ({
+                //   color: "#212529",
+                //   backgroundColor: "#a0a0a0",
+                // })}
+                placeholder="Tags..."
                 onCreateOption={(label) => {
                   const newTag = { id: uuidV4(), label };
                   onAddTag(newTag);
@@ -79,13 +104,18 @@ const NoteForm: FC<NoteFormProps> = ({
             rows={15}
             ref={bodyRef}
             defaultValue={body}
+            className="note-fields"
           />
         </Form.Group>
         <Stack direction="horizontal" gap={2} className="justify-content-end">
-          <Button type="submit" variant="primary" onClick={submitHandler}>
+          <Button type="submit" variant="btn btn-dark">
             Save
           </Button>
-          <Button type="button" variant="outline-secondary">
+          <Button
+            type="button"
+            variant="btn btn-light"
+            onClick={() => navigate("/")}
+          >
             Cancel
           </Button>
         </Stack>
