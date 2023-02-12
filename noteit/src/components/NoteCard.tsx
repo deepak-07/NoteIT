@@ -2,6 +2,7 @@ import React, { FC, FormEvent, useRef, useState } from "react";
 import { Form, Stack, Card, Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Tag } from "../App";
+import "../Note.css";
 
 export type NotesCardProps = {
   title: string;
@@ -13,7 +14,7 @@ export const NoteCard: FC<NotesCardProps> = ({ title, tags, id }) => {
     <Card
       as={Link}
       to={`/${id}`}
-      className={"h-100 text-reset text-decoration-none"}
+      className={"h-100 text-reset text-decoration-none note-card"}
     >
       <Card.Body>
         <Stack

@@ -1,0 +1,13 @@
+.note-card {
+    width: 300px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.note-card:hover,
+.note-card:focus {
+    overflow: hidden;
+    background: #e5e8ea;
+    box-sizing: border-box;
+    box-shadow: 0 10px 10px #e6eef4
+}

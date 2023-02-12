@@ -35,7 +35,7 @@ const NoteForm: FC<NoteFormProps> = ({
     navigate("..");
   };
   return (
-    <Form>
+    <Form onSubmit={submitHandler}>
       <Stack gap={4}>
         <Row>
           <Col>
@@ -82,10 +82,14 @@ const NoteForm: FC<NoteFormProps> = ({
           />
         </Form.Group>
         <Stack direction="horizontal" gap={2} className="justify-content-end">
-          <Button type="submit" variant="primary" onClick={submitHandler}>
+          <Button type="submit" variant="primary">
             Save
           </Button>
-          <Button type="button" variant="outline-secondary">
+          <Button
+            type="button"
+            variant="outline-secondary"
+            onClick={() => navigate("/")}
+          >
             Cancel
           </Button>
         </Stack>
