@@ -2,8 +2,9 @@ import { FC, useMemo, useState } from "react";
 import { Form, Stack, Row, Col, Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ReactSelect from "react-select";
-import { Note, NotesData, Tag } from "../App";
+import { Note, Tag } from "../App";
 import { NoteCard } from "./NoteCard";
+import "../Note.css";
 
 export type NotesListProps = {
   notesData: Note[];
@@ -47,7 +48,7 @@ export const NoteList: FC<NotesListProps> = ({
             </Link>
             <Button
               onClick={() => setEditTagsModalIsOpen(true)}
-              variant="outline-secondary"
+              variant="secondary"
             >
               Edit Tags
             </Button>
@@ -64,6 +65,7 @@ export const NoteList: FC<NotesListProps> = ({
                 value={title}
                 placeholder={"Search title.."}
                 onChange={(e) => setTitle(e.target.value)}
+                className="note-fields"
               />
             </Form.Group>
           </Col>
@@ -71,6 +73,18 @@ export const NoteList: FC<NotesListProps> = ({
             <Form.Group controlId="tags">
               <Form.Label>Tags</Form.Label>
               <ReactSelect
+                className="note-fields"
+                classNames={{
+                  control: (state) => "note-fields",
+                }}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 5,
+                  colors: {
+                    ...theme.colors,
+                    primary25: "#3C2A21",
+                  },
+                })}
                 placeholder={"Filter tags"}
                 value={selectedTags.map((tag) => {
                   return { label: tag.label, value: tag.id };

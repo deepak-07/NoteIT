@@ -2,12 +2,25 @@
     width: 300px;
     padding: 20px;
     margin: 0 auto;
+    background-color: #D5CEA3;
+    color: #3C2A21 !important;
 }
 
 .note-card:hover,
 .note-card:focus {
     overflow: hidden;
-    background: #e5e8ea;
+    background: #3C2A21 !important;
+    color: #E5E5CB !important;
     box-sizing: border-box;
-    box-shadow: 0 10px 10px #e6eef4
+    box-shadow: 0 10px 10px #3C2A21
+}
+
+.note-fields {
+    background-color: #3C2A21 !important;
+    color: #D5CEA3 !important;
+    font-weight: 600;
+}
+
+.note-fields:focus {
+    border: 2px solid white !important;
 }
