@@ -26,6 +26,7 @@
     font-weight: 600;
 }
 
-.note-fields:focus {
-    /* border: 2px solid white !important; */
+.edit-modal {
+    color: #674188;
+    background-color: #E5E0FF;
 }

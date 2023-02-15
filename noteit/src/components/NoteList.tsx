@@ -160,10 +160,10 @@ export const EditModalTags = ({
         show={editTagsModalIsOpen}
         onHide={() => setEditTagsModalIsOpen(false)}
       >
-        <Modal.Header closeButton>
+        <Modal.Header className="edit-modal" closeButton>
           <Modal.Title>Edit Tags</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="edit-modal ">
           <Stack gap={2}>
             {availableTags.length > 0 ? (
               availableTags.map((tag) => {
@@ -173,6 +173,7 @@ export const EditModalTags = ({
                       <Form.Control
                         type="text"
                         value={tag.label}
+                        className="note-fields-tag"
                         onChange={(e) => {
                           updateTag(tag.id, e.target.value);
                         }}
